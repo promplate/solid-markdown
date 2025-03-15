@@ -1,33 +1,13 @@
-name: Publish
+name: Preview Release
 
-permissions:
-  contents: write
-  issues: write
-  pull-requests: write
-
-on:
-  push:
-    branches:
-      - "main"
+on: [push]
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: latest
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
-      - run: pnpm i
-      - run: pnpm lint
-      - run: pnpm build
-
-      - run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          HUSKY: 0
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun i
+      - run: bun run build
+      - run: bun x pkg-pr-new publish
