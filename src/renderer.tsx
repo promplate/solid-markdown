@@ -73,13 +73,6 @@ export const MarkdownText: Component<{
 				: null;
 		const basic = typeof component === "string"; //|| component === React.Fragment;
 
-		properties.key = [
-			"text",
-			position.start.line,
-			position.start.column,
-			props.index,
-		].join("-");
-
 		// If `sourcePos` is given, pass source information (line/column info from markdown source).
 		if (options.sourcePos) {
 			properties["data-sourcepos"] = flattenPosition(position);
@@ -166,13 +159,6 @@ export const MarkdownNode: Component<{
 				? options.components[name]
 				: name;
 		const basic = typeof component === "string"; //|| component === React.Fragment;
-
-		properties.key = [
-			name,
-			position.start.line,
-			position.start.column,
-			props.index,
-		].join("-");
 
 		if (name === "a" && options.linkTarget) {
 			properties.target =
