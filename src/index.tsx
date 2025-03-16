@@ -1,24 +1,16 @@
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import {
-	type Component,
-	createMemo,
-	createRenderEffect,
-	mergeProps,
-} from "solid-js";
-import { createStore, reconcile } from "solid-js/store";
+import { type Component, createMemo, mergeProps } from "solid-js";
 import { html } from "property-information";
 import { type PluggableList, unified } from "unified";
 import { VFile } from "vfile";
 import type { Options as TransformOptions } from "./types";
 
 import rehypeFilter, { type Options as FilterOptions } from "./rehype-filter";
-import { MarkdownNode, MarkdownRoot } from "./renderer";
-import type { Root } from "hast";
+import { MarkdownRoot } from "./renderer";
 
 type CoreOptions = {
 	children: string;
-	renderingStrategy: "memo" | "reconcile";
 };
 type PluginOptions = {
 	remarkPlugins: PluggableList;
@@ -37,7 +29,6 @@ export type SolidMarkdownOptions = CoreOptions &
 export type SolidMarkdownComponents = TransformOptions["components"];
 
 const defaults: SolidMarkdownOptions = {
-	renderingStrategy: "memo",
 	remarkPlugins: [],
 	rehypePlugins: [],
 	class: "",
@@ -59,9 +50,8 @@ export const SolidMarkdown: Component<Partial<SolidMarkdownOptions>> = (
 	opts,
 ) => {
 	const options: SolidMarkdownOptions = mergeProps(defaults, opts);
-	const [node, setNode] = createStore<Root>({ type: "root", children: [] });
 
-	const generateNode = createMemo(() => {
+	const hastNode = createMemo(() => {
 		const children = options.children;
 		const processor = unified()
 			.use(remarkParse)
@@ -89,18 +79,12 @@ export const SolidMarkdown: Component<Partial<SolidMarkdownOptions>> = (
 		return hastNode;
 	});
 
-	if (options.renderingStrategy === "reconcile") {
-		createRenderEffect(() => {
-			setNode(reconcile(generateNode()));
-		});
-	}
-
 	return (
 		<>
 			<div class={options.class}>
 				<MarkdownRoot
 					context={{ options, schema: html, listDepth: 0 }}
-					node={options.renderingStrategy === "memo" ? generateNode() : node}
+					node={hastNode()}
 				/>
 			</div>
 		</>
