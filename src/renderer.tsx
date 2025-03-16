@@ -1,4 +1,4 @@
-import { type Component, For, Match, Switch, createMemo, Show } from "solid-js";
+import { type Component, Match, Switch, createMemo, Show, Index } from "solid-js";
 import type { Context, SolidMarkdownNames } from "./types";
 import type { Root, Element, Text } from "hast";
 import { svg } from "property-information";
@@ -20,28 +20,28 @@ export const MarkdownChildren: Component<{
 	context: Context;
 	node: Element | Root;
 }> = (props) => (
-	<For each={props.node.children}>
+	<Index each={props.node.children}>
 		{(child, index) => (
 			<Switch>
-				<Match when={child.type === "element"}>
+				<Match when={child().type === "element"}>
 					<MarkdownNode
 						context={props.context}
-						index={index()}
-						node={child as Element}
+						index={index}
+						node={child() as Element}
 						parent={props.node}
 					/>
 				</Match>
-				<Match when={child.type === "text" && child.value !== "\n"}>
+				<Match when={child().type === "text" && (child() as Text).value !== "\n"}>
 					<MarkdownText
 						context={props.context}
-						index={index()}
-						node={child as Text}
+						index={index}
+						node={child() as Text}
 						parent={props.node}
 					/>
 				</Match>
 			</Switch>
 		)}
-	</For>
+	</Index>
 );
 
 export const MarkdownText: Component<{
