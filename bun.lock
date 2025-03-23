@@ -5,6 +5,7 @@
       "name": "solid-markdown",
       "dependencies": {
         "comma-separated-tokens": "^2.0.3",
+        "micromark": "^4.0.2",
         "property-information": "^6.5.0",
         "remark-parse": "^11.0.0",
         "remark-rehype": "^11.1.1",

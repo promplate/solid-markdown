@@ -9,7 +9,7 @@ const preset_options: preset.PresetOptions = {
 			// entries with '.tsx' extension will have `solid` export condition generated
 			entry: "src/index.tsx",
 			// will generate a separate development entry
-			dev_entry: true,
+			// dev_entry: true,
 			// server_entry: true,
 		},
 	],
@@ -26,6 +26,8 @@ const CI =
 	process.env["GITHUB_ACTIONS"] === '"1"';
 
 export default defineConfig((config) => {
+	config.sourcemap = true
+
 	const watching = !!config.watch;
 
 	const parsed_options = preset.parsePresetOptions(preset_options, watching);
