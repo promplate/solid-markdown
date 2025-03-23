@@ -6,7 +6,7 @@
       "dependencies": {
         "comma-separated-tokens": "^2.0.3",
         "micromark": "^4.0.2",
-        "property-information": "^6.5.0",
+        "property-information": "^7.0.0",
         "remark-parse": "^11.0.0",
         "remark-rehype": "^11.1.1",
         "space-separated-tokens": "^2.0.2",
@@ -779,7 +779,7 @@
 
     "pretty-format": ["pretty-format@29.7.0", "https://repo.huaweicloud.com/repository/npm/pretty-format/-/pretty-format-29.7.0.tgz", { "dependencies": { "@jest/schemas": "^29.6.3", "ansi-styles": "^5.0.0", "react-is": "^18.0.0" } }, "sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ=="],
 
-    "property-information": ["property-information@6.5.0", "https://repo.huaweicloud.com/repository/npm/property-information/-/property-information-6.5.0.tgz", {}, "sha512-PgTgs/BlvHxOu8QuEN7wi5A0OmXaBcHpmCSTehcs6Uuu9IkDIEo13Hy7n898RHfrQ49vKCoGeWZSaAK01nwVig=="],
+    "property-information": ["property-information@7.0.0", "", {}, "sha512-7D/qOz/+Y4X/rzSB6jKxKUsQnphO046ei8qxG59mtM3RG3DHgTK81HrxrmoDVINJb8NKT5ZsRbwHvQ6B68Iyhg=="],
 
     "psl": ["psl@1.15.0", "https://repo.huaweicloud.com/repository/npm/psl/-/psl-1.15.0.tgz", { "dependencies": { "punycode": "^2.3.1" } }, "sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w=="],
 
