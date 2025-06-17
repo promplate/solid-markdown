@@ -87,7 +87,7 @@
   "devDependencies": {
     "@types/hast": "^2.3.10",
     "@types/unist": "^3.0.3",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/eslint-plugin": "^8.34.1",
     "@typescript-eslint/parser": "^6.21.0",
     "concurrently": "^8.2.2",
     "esbuild": "^0.18.20",
